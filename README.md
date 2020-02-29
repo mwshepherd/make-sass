@@ -31,7 +31,7 @@ sass
 │
 └───1-abstracts
 │   │   _1-abstracts.scss
-│   │   variables.scss
+│   │   _variables.scss
 │
 └───2-base
 │   │   _2-base.scss
