@@ -1,0 +1,55 @@
+#!/bin/bash
+
+#make all directories
+mkdir sass
+mkdir sass/1-abstracts
+mkdir sass/2-base
+mkdir sass/3-layout
+mkdir sass/4-modules
+
+#create all container files
+touch sass/main.scss
+touch sass/1-abstracts/_1-abstracts.scss
+touch sass/2-base/_2-base.scss
+touch sass/3-layout/_3-layout.scss
+touch sass/4-modules/_4-modules.scss
+
+#create 1-abstracts files
+touch sass/1-abstracts/_variables.scss
+
+#init 1-abstracts
+echo "@import 'variables';" >> sass/1-abstracts/_1-abstracts.scss
+
+#create 2-base files
+touch sass/2-base/_global.scss
+touch sass/2-base/_typography.scss
+touch sass/2-base/_utilities.scss
+
+#init global file
+echo "*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background: #fafafa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+" >> sass/2-base/_global.scss
+
+#init 2-base
+echo "@import 'global';" >> sass/2-base/_2-base.scss
+echo "@import 'typography';" >> sass/2-base/_2-base.scss
+echo "@import 'utilities';" >> sass/2-base/_2-base.scss
+
+# init the container files
+echo "@import '1-abstracts/1-abstracts';" >> sass/main.scss
+echo "@import '2-base/2-base';" >> sass/main.scss
+echo "@import '3-layout/3-layout';" >> sass/main.scss
+echo "@import '4-modules/4-modules';" >> sass/main.scss
+
+#run sass
+sass sass/main.scss styles/style.css --watch
